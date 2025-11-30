@@ -57,7 +57,7 @@ Module.register("MMM-SwitchBot", {
    * This is the place to receive notifications from other modules or the system.
    *
    * @param {string} notification The notification ID, it is preferred that it prefixes your module name
-   * @param {number} payload the payload type.
+   * @param {strng} payload the payload type.
    */
   notificationReceived(notification, payload) {
     if (notification === "TEMPLATE_RANDOM_TEXT") {

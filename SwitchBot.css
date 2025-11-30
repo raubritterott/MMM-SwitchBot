@@ -1,9 +1,10 @@
-.MMM-SwitchBot div {
+.MMM-SwitchBot div b {
   color: white;
 }
 
-.MMM-SwitchBot div b {
-  color: lightgray;
+.MMM-SwitchBot div {
+  color: lightgrey;
 }
+
 
 
