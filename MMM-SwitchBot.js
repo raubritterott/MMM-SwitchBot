@@ -16,6 +16,8 @@ Module.register("MMM-SwitchBot", {
    */
   start() {
     this.templateContent = this.config.exampleContent
+    this.token = this.config.token
+    this.secret = this.config.secret
 
     // set timeout for next random text
     setInterval(() => this.addRandomText(), 3000)
@@ -40,7 +42,7 @@ Module.register("MMM-SwitchBot", {
    */
   getDom() {
     const wrapper = document.createElement("div")
-    wrapper.innerHTML = `<b>Title</b><br />${this.templateContent}`
+    wrapper.innerHTML = `<b>Title</b><br />${this.templateContent}br />${this.token}br />${this.secret}`
 
     return wrapper
   },
