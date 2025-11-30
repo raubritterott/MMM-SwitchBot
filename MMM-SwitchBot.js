@@ -45,8 +45,12 @@ Module.register("MMM-SwitchBot", {
     return wrapper
   },
 
-  addRandomText() {
-    this.sendSocketNotification("GET_RANDOM_TEXT", { amountCharacters: 15 })
+  //addRandomText() {
+  //  this.sendSocketNotification("GET_RANDOM_TEXT", { amountCharacters: 15 })
+  //},
+
+  addSign() {
+    this.sendSocketNotification("GET_SIGN", { sign: "srtagfu9artialkngairtanjkrgn" })
   },
 
   /**
@@ -58,6 +62,11 @@ Module.register("MMM-SwitchBot", {
   notificationReceived(notification, payload) {
     if (notification === "TEMPLATE_RANDOM_TEXT") {
       this.templateContent = `${this.config.exampleContent} ${payload}`
+      this.updateDom()
+    }
+
+    else if (notification === "SIGN") {
+      this.templateContent = `${payload}`
       this.updateDom()
     }
   }
