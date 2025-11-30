@@ -50,7 +50,7 @@ Module.register("MMM-SwitchBot", {
   //},
 
   addSign() {
-    this.sendSocketNotification("GET_SIGN", { sign: "srtagfu9artialkngairtanjkrgn" })
+    this.sendSocketNotification("GET_SIGN", { payload: "MyPayload" })
   },
 
   /**
