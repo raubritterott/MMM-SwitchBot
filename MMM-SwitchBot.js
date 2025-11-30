@@ -42,7 +42,7 @@ Module.register("MMM-SwitchBot", {
    */
   getDom() {
     const wrapper = document.createElement("div")
-    wrapper.innerHTML = `<b>Title</b><br />${this.templateContent}<br />${this.token}<br />${this.secret}`
+    wrapper.innerHTML = `<b>SwitchBot Data</b><br />${this.templateContent}<br />${this.token}<br />${this.secret}`
 
     return wrapper
   },
