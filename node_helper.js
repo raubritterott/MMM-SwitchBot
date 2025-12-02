@@ -25,14 +25,14 @@ module.exports = NodeHelper.create(
           hostname: 'api.switch-bot.com',
           port: 443,
           path: `/v1.1/devices/${deviceId}/commands`, ///${deviceId}/commands`,
-          method: 'GET',
+          method: 'POST',
           headers: {
               "Authorization": token,
               "sign": sign,
               "nonce": nonce,
               "t": t,
               'Content-Type': 'application/json',
-              //'Content-Length': body.length,
+              'Content-Length': body.length,
           },
       };
       
