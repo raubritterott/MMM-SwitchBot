@@ -49,7 +49,7 @@ module.exports = NodeHelper.create(
       
       //req.write(body);
       req.end();
-      this.sendSocketNotification("SIGN", { text: data });
+      this.sendSocketNotification("SIGN", { text: d.version || "No data" });
     }
   },
 
