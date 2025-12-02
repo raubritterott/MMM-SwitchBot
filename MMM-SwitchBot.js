@@ -37,11 +37,13 @@ Module.register("MMM-SwitchBot",
    */
   socketNotificationReceived: function (notification, data)
   {
-   if (notification === "SIGN")
-    {
-      this.sign = `${data.text}`
-      this.updateDom()
-    }
+    console.log("Empfangene Nachricht:", notification);
+    console.log("Empfangene Daten:", data);
+    if (notification === "SIGN")
+      {
+        this.sign = `${data.text}`
+        this.updateDom()
+      }
   },
 
   /**
