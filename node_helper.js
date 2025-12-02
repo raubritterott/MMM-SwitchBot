@@ -42,14 +42,31 @@ module.exports = NodeHelper.create(
               process.stdout.write(d);
           });
       });
+
+      let rawData = "";
       
-      req.on('error', error => {
-          console.error(error);
+      req.on('data', chunk => {
+        rawData += chunk;
       });
-      
-      //req.write(body);
-      req.end();
-      this.sendSocketNotification("SIGN", { text: d.version || "No data" });
+
+      res.on('end', () => {
+        try
+        {
+          const json = JSON.parse(rawData);
+          const version = json.body?.version || "No version";
+
+          console.log("Komplette Antwort:", json);
+
+          // Jetzt kannst du version senden!
+          this.sendSocketNotification("SIGN", { text: version });
+
+        }
+        catch (err)
+        {
+          console.error("Fehler beim JSON-Parsen:", err);
+          this.sendSocketNotification("SIGN", { text: "Parse error" });
+        }
+      });
     }
   },
 
