@@ -4,7 +4,7 @@ Module.register("MMM-SwitchBot",
   {
     token: "",
     secret: "",
-    updateInterval: 300000, // default update interval is 5 minutes
+    updateInterval: 60000, // default update interval is 1 minute
     sign: ""
   },
 
@@ -24,6 +24,7 @@ Module.register("MMM-SwitchBot",
     this.token = this.config.token
     this.secret = this.config.secret
     this.updateInterval = this.config.updateInterval
+    this.addSign()
 
     console.log("Update-Intervall (ms):", this.updateInterval)
 
