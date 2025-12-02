@@ -23,6 +23,9 @@ Module.register("MMM-SwitchBot",
   {
     this.token = this.config.token
     this.secret = this.config.secret
+    this.updateInterval = this.config.updateInterval
+
+    console.log("Update-Intervall (ms):", this.updateInterval)
 
     // set timeout for next random text
     setInterval(() => this.addSign(), this.updateInterval)
@@ -37,8 +40,6 @@ Module.register("MMM-SwitchBot",
    */
   socketNotificationReceived: function (notification, data)
   {
-    console.log("Empfangene Nachricht:", notification);
-    console.log("Empfangene Daten:", data);
     if (notification === "SIGN")
       {
         this.sign = `${data.text}`
