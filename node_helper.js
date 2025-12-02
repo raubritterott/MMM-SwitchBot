@@ -20,11 +20,11 @@ module.exports = NodeHelper.create(
         .createHmac('sha256', secret)
         .update(data)
         .digest('base64');
-      //const deviceId = "MAC";
+      const deviceId = "B0E9FE577821";
       const options = {
           hostname: 'api.switch-bot.com',
           port: 443,
-          path: `/v1.1/devices`, ///${deviceId}/commands`,
+          path: `/v1.1/devices/${deviceId}`, ///${deviceId}/commands`,
           method: 'GET',
           headers: {
               "Authorization": token,
