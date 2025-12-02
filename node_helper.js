@@ -48,7 +48,6 @@ module.exports = NodeHelper.create(
       });
       
       //req.write(body);
-      req.write();
       req.end();
       this.sendSocketNotification("SIGN", { text: data });
     }
