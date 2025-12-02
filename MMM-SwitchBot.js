@@ -33,7 +33,7 @@ Module.register("MMM-SwitchBot",
    * So we can communicate between the node helper and the module.
    *
    * @param {string} notification - The notification identifier.
-   * @param {string} data - The payload data`returned by the node helper.
+   * @param {any} data - The payload data`returned by the node helper.
    */
   socketNotificationReceived: function (notification, data)
   {
@@ -64,7 +64,7 @@ Module.register("MMM-SwitchBot",
    * This is the place to receive notifications from other modules or the system.
    *
    * @param {string} notification The notification ID, it is preferred that it prefixes your module name
-   * @param {string} data the payload type.
+   * @param {any} data the payload type.
    */
   notificationReceived(notification, data)
   {
