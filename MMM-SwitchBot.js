@@ -4,7 +4,7 @@ Module.register("MMM-SwitchBot",
   {
     token: "",
     secret: "",
-    updateInterval: 30000, //300000, // default update interval is 5 minutes
+    updateInterval: 300000, // default update interval is 5 minutes
     sign: ""
   },
 
