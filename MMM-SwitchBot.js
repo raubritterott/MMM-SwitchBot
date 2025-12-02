@@ -50,7 +50,7 @@ Module.register("MMM-SwitchBot",
   getDom()
   {
     const wrapper = document.createElement("div")
-    wrapper.innerHTML = `<b>SwitchBot Data</b><br />${this.sign}`
+    wrapper.innerHTML = `<b>SwitchBot Data</b><br />data: ${this.data}`
 
     return wrapper
   },
