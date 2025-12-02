@@ -36,39 +36,43 @@ module.exports = NodeHelper.create(
           },
       };
       
-      const req = https.request(options, res => {
-          console.log(`statusCode: ${res.statusCode}`);
-          res.on('data', d => {
-              process.stdout.write(d);
-          });
-      });
-
-      let rawData = "";
+      const req = https.request(options, (res) =>
+      {
+        let rawData = "";
       
-      res.on('data', chunk =>
-      {
-        rawData += chunk;
+        res.on('data', chunk =>
+        {
+          rawData += chunk;
+        });
+
+        res.on('end', () =>
+        {
+          try
+          {
+            const json = JSON.parse(rawData);
+            const version = json.body?.version || "No version";
+
+            console.log("Komplette Antwort:", json);
+
+            // Jetzt kannst du version senden!
+            this.sendSocketNotification("SIGN", { text: version });
+
+          }
+          catch (err)
+          {
+            console.error("Fehler beim JSON-Parsen:", err);
+            this.sendSocketNotification("SIGN", { text: "Parse error" });
+          }
+        });
       });
 
-      res.on('end', () =>
+      req.on("error", (error) =>
       {
-        try
-        {
-          const json = JSON.parse(rawData);
-          const version = json.body?.version || "No version";
-
-          console.log("Komplette Antwort:", json);
-
-          // Jetzt kannst du version senden!
-          this.sendSocketNotification("SIGN", { text: version });
-
-        }
-        catch (err)
-        {
-          console.error("Fehler beim JSON-Parsen:", err);
-          this.sendSocketNotification("SIGN", { text: "Parse error" });
-        }
+        console.error("HTTPS error:", error);
+        this.sendSocketNotification("SIGN", { text: "HTTPS error" });
       });
+
+      req.end();
     }
   },
 
