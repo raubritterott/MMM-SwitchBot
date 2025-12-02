@@ -45,12 +45,12 @@ module.exports = NodeHelper.create(
 
       let rawData = "";
       
-      req.on('data', chunk =>
+      res.on('data', chunk =>
       {
         rawData += chunk;
       });
 
-      req.on('end', () =>
+      res.on('end', () =>
       {
         try
         {
