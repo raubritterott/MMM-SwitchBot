@@ -25,7 +25,7 @@ Module.register("MMM-SwitchBot",
     this.secret = this.config.secret
 
     // set timeout for next random text
-    setInterval(() => this.addSign(), this.updateInterval) // refresh data every 
+    setInterval(() => this.addSign(), this.updateInterval)
   },
 
   /**
@@ -33,7 +33,7 @@ Module.register("MMM-SwitchBot",
    * So we can communicate between the node helper and the module.
    *
    * @param {string} notification - The notification identifier.
-   * @param {any} payload - The payload data`returned by the node helper.
+   * @param {string} data - The payload data`returned by the node helper.
    */
   socketNotificationReceived: function (notification, data)
   {
@@ -64,7 +64,7 @@ Module.register("MMM-SwitchBot",
    * This is the place to receive notifications from other modules or the system.
    *
    * @param {string} notification The notification ID, it is preferred that it prefixes your module name
-   * @param {string} payload the payload type.
+   * @param {string} data the payload type.
    */
   notificationReceived(notification, data)
   {
