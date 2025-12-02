@@ -45,11 +45,13 @@ module.exports = NodeHelper.create(
 
       let rawData = "";
       
-      req.on('data', chunk => {
+      req.on('data', chunk =>
+      {
         rawData += chunk;
       });
 
-      res.on('end', () => {
+      req.on('end', () =>
+      {
         try
         {
           const json = JSON.parse(rawData);
