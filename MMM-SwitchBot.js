@@ -20,7 +20,7 @@ Module.register("MMM-SwitchBot", {
     this.secret = this.config.secret
 
     // set timeout for next random text
-    setInterval(() => this.addRandomText(), 3000)
+    setInterval(() => this.addSign(), 3000)
   },
 
   /**
@@ -51,9 +51,9 @@ Module.register("MMM-SwitchBot", {
     return wrapper
   },
 
-  //addRandomText() {
-  //  this.sendSocketNotification("GET_RANDOM_TEXT", { amountCharacters: 15 })
-  //},
+  addRandomText() {
+    this.sendSocketNotification("GET_RANDOM_TEXT", { amountCharacters: 15 })
+  },
 
   addSign() {
     this.sendSocketNotification("GET_SIGN", { payload: "MyPayload" })
