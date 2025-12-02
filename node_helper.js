@@ -24,15 +24,15 @@ module.exports = NodeHelper.create(
       const options = {
           hostname: 'api.switch-bot.com',
           port: 443,
-          path: `/v1.1/devices/${deviceId}/commands`, ///${deviceId}/commands`,
-          method: 'POST',
+          path: `/v1.1/devices/${deviceId}/status`, ///${deviceId}/commands`,
+          method: 'GET',
           headers: {
               "Authorization": token,
               "sign": sign,
               "nonce": nonce,
               "t": t,
               'Content-Type': 'application/json',
-              'Content-Length': body.length,
+              //'Content-Length': body.length,
           },
       };
       
@@ -47,7 +47,7 @@ module.exports = NodeHelper.create(
           console.error(error);
       });
       
-      req.write(body);
+      //req.write(body);
       req.end();
       this.sendSocketNotification("SIGN", { text: data });
     }
