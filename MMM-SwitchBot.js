@@ -35,6 +35,10 @@ Module.register("MMM-SwitchBot", {
       this.templateContent = `${this.config.exampleContent} ${payload.text}`
       this.updateDom()
     }
+    else if (notification === "SIGN") {
+      this.templateContent = `${payload.text}`
+      this.updateDom()
+    }
   },
 
   /**
