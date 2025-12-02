@@ -13,7 +13,7 @@ module.exports = NodeHelper.create({
     else if (notification === "GET_SIGN") {
       // Erstelle einen SHA-256-Hash aus dem Payload
       const hash = crypto.createHash("sha256").update(JSON.stringify(payload)).digest("hex")
-      this.sendSocketNotification("SIGN", { text: hash }) // Sende den Hash zurück
+      this.sendSocketNotification("SIGN", { text: "blablub" }) // Sende den Hash zurück
     }
   },
 
