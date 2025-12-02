@@ -1,26 +1,31 @@
-Module.register("MMM-SwitchBot", {
-
-  defaults: {
-    exampleContent: ""
+Module.register("MMM-SwitchBot",
+{
+  defaults:
+  {
+    token: "",
+    secret: "",
+    updateInterval: 3000, //300000, // default update interval is 5 minutes
+    sign: ""
   },
 
   /**
    * Apply the default styles.
    */
-  getStyles() {
+  getStyles()
+  {
     return ["SwitchBot.css"]
   },
 
   /**
    * Pseudo-constructor for our module. Initialize stuff here.
    */
-  start() {
-    this.templateContent = this.config.exampleContent
+  start() 
+  {
     this.token = this.config.token
     this.secret = this.config.secret
 
     // set timeout for next random text
-    setInterval(() => this.addSign(), 3000)
+    setInterval(() => this.addSign(), this.updateInterval) // refresh data every 
   },
 
   /**
@@ -30,13 +35,11 @@ Module.register("MMM-SwitchBot", {
    * @param {string} notification - The notification identifier.
    * @param {any} payload - The payload data`returned by the node helper.
    */
-  socketNotificationReceived: function (notification, payload) {
-    if (notification === "EXAMPLE_NOTIFICATION") {
-      this.templateContent = `${this.config.exampleContent} ${payload.text}`
-      this.updateDom()
-    }
-    else if (notification === "SIGN") {
-      this.templateContent = `${payload.text}`
+  socketNotificationReceived: function (notification, payload)
+  {
+   if (notification === "SIGN")
+    {
+      this.sign = `${payload.text}`
       this.updateDom()
     }
   },
@@ -44,18 +47,16 @@ Module.register("MMM-SwitchBot", {
   /**
    * Render the page we're on.
    */
-  getDom() {
+  getDom()
+  {
     const wrapper = document.createElement("div")
-    wrapper.innerHTML = `<b>SwitchBot Data</b><br />${this.templateContent}<br />${this.token}<br />${this.secret}`
+    wrapper.innerHTML = `<b>SwitchBot Data</b><br />${this.sign}`
 
     return wrapper
   },
 
-  addRandomText() {
-    this.sendSocketNotification("GET_RANDOM_TEXT", { amountCharacters: 15 })
-  },
-
-  addSign() {
+  addSign()
+  {
     this.sendSocketNotification("GET_SIGN", { payload: "MyPayload" })
   },
 
@@ -63,16 +64,12 @@ Module.register("MMM-SwitchBot", {
    * This is the place to receive notifications from other modules or the system.
    *
    * @param {string} notification The notification ID, it is preferred that it prefixes your module name
-   * @param {strng} payload the payload type.
+   * @param {string} payload the payload type.
    */
-  notificationReceived(notification, payload) {
-    if (notification === "TEMPLATE_RANDOM_TEXT") {
-      this.templateContent = `${this.config.exampleContent} ${payload}`
-      this.updateDom()
-    }
-
-    else if (notification === "SIGN") {
-      this.templateContent = `${payload}`
+  notificationReceived(notification, payload)
+  {
+    if (notification === "SIGN") {
+      this.sign = `${payload.text}`
       this.updateDom()
     }
   }
