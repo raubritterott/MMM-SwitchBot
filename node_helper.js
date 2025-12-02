@@ -16,8 +16,40 @@ module.exports = NodeHelper.create(
       const t = Date.now();
       const nonce = "MagicMirrorAO";
       const data = token + t + nonce;
-      console.log("Data:", data);
-      //const hash = crypto.createHash("sha256").update(JSON.stringify(payload)).digest("hex");
+      const sign = crypto
+        .createHmac('sha256', secret)
+        .update(data)
+        .digest('base64');
+      //const deviceId = "MAC";
+      const options = {
+          hostname: 'api.switch-bot.com',
+          port: 443,
+          path: `/v1.1/devices`, ///${deviceId}/commands`,
+          method: 'GET',
+          headers: {
+              "Authorization": token,
+              "sign": sign,
+              "nonce": nonce,
+              "t": t,
+              'Content-Type': 'application/json',
+              //'Content-Length': body.length,
+          },
+      };
+      
+      const req = https.request(options, res => {
+          console.log(`statusCode: ${res.statusCode}`);
+          res.on('data', d => {
+              process.stdout.write(d);
+          });
+      });
+      
+      req.on('error', error => {
+          console.error(error);
+      });
+      
+      //req.write(body);
+      req.write();
+      req.end();
       this.sendSocketNotification("SIGN", { text: data });
     }
   },
