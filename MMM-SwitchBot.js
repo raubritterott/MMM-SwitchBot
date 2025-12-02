@@ -35,11 +35,11 @@ Module.register("MMM-SwitchBot",
    * @param {string} notification - The notification identifier.
    * @param {any} payload - The payload data`returned by the node helper.
    */
-  socketNotificationReceived: function (notification, payload)
+  socketNotificationReceived: function (notification, data)
   {
    if (notification === "SIGN")
     {
-      this.sign = `${payload.text}`
+      this.sign = `${data.text}`
       this.updateDom()
     }
   },
@@ -57,7 +57,7 @@ Module.register("MMM-SwitchBot",
 
   addSign()
   {
-    this.sendSocketNotification("GET_SIGN", { payload: "MyPayload" })
+    this.sendSocketNotification("GET_SIGN", { token: this.token, secret: this.secret })
   },
 
   /**
@@ -66,10 +66,10 @@ Module.register("MMM-SwitchBot",
    * @param {string} notification The notification ID, it is preferred that it prefixes your module name
    * @param {string} payload the payload type.
    */
-  notificationReceived(notification, payload)
+  notificationReceived(notification, data)
   {
     if (notification === "SIGN") {
-      this.sign = `${payload.text}`
+      this.sign = `${data.text}`
       this.updateDom()
     }
   }

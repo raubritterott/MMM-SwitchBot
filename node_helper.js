@@ -1,16 +1,19 @@
-const NodeHelper = require("node_helper")
-const crypto = require("crypto") // Importiere das crypto-Modul
+const NodeHelper = require("node_helper");
+const crypto = require("crypto");
+const https = require('https');
 
 module.exports = NodeHelper.create(
 {
 
-  async socketNotificationReceived(notification, payload)
+  async socketNotificationReceived(notification, token, secret)
   {
     if (notification === "GET_SIGN")
     {
-      // Erstelle einen SHA-256-Hash aus dem Payload
-      const hash = crypto.createHash("sha256").update(JSON.stringify(payload)).digest("hex")
-      this.sendSocketNotification("SIGN", { text: hash }) // Sende den Hash zurück
+      const t = Date.now();
+      const nonce = "MagicMirrorAO";
+      const data = token + t + nonce;
+      const hash = crypto.createHash("sha256").update(JSON.stringify(payload)).digest("hex");
+      this.sendSocketNotification("SIGN", { text: data });
     }
   },
 
