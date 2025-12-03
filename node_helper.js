@@ -51,17 +51,21 @@ module.exports = NodeHelper.create(
           {
             const json = JSON.parse(rawData);
             const version = json.body?.version || "No version";
+            const temperature = json.body?.temperature || "No temperature";
+            const humidity = json.body?.humidity || "No humidity";
+            const battery = json.body?.battery || "No battery info";
+            const deviceType = json.body?.deviceType || "No device type";
 
             console.log("Komplette Antwort:", json);
 
             // Jetzt kannst du version senden!
-            this.sendSocketNotification("SIGN", { text: version });
+            this.sendSocketNotification("SIGN", { version: version, temperature: temperature, humidity: humidity, battery: battery, deviceType: deviceType, status: "success" });
 
           }
           catch (err)
           {
             console.error("Fehler beim JSON-Parsen:", err);
-            this.sendSocketNotification("SIGN", { text: "Parse error" });
+            this.sendSocketNotification("SIGN", { status: "Parse error" });
           }
         });
       });
@@ -69,7 +73,7 @@ module.exports = NodeHelper.create(
       req.on("error", (error) =>
       {
         console.error("HTTPS error:", error);
-        this.sendSocketNotification("SIGN", { text: "HTTPS error" });
+        this.sendSocketNotification("SIGN", { status: "HTTPS error" });
       });
 
       req.end();

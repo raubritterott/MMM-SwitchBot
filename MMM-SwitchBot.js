@@ -5,7 +5,12 @@ Module.register("MMM-SwitchBot",
     token: "",
     secret: "",
     updateInterval: 60000, // default update interval is 1 minute
-    sign: ""
+    version: null,
+    temperature: null,
+    humidity: null,
+    battery: null,
+    deviceType: null,
+    status: "waiting for data"
   },
 
   /**
@@ -43,7 +48,12 @@ Module.register("MMM-SwitchBot",
   {
     if (notification === "SIGN")
       {
-        this.sign = `${data.text}`
+        this.temperature = `${data.temperature} °C`
+        this.humidity = `${data.humidity} %`
+        this.battery = `${data.battery} %`
+        this.deviceType = `${data.deviceType}`
+        this.status = `${data.status}`
+        console.log("Daten aktualisiert:", this.temperature, this.humidity, this.battery, this.deviceType)
         this.updateDom()
       }
   },
@@ -54,7 +64,7 @@ Module.register("MMM-SwitchBot",
   getDom()
   {
     const wrapper = document.createElement("div")
-    wrapper.innerHTML = `<b>SwitchBot Data</b><br />data: ${this.sign}`
+    wrapper.innerHTML = `<b>SwitchBot Data</b><br />Temperature: ${this.temperature}<br />Humidity: ${this.humidity}<br />Battery: ${this.battery}<br />Device Type: ${this.deviceType}<br />Status: ${this.status}`
 
     return wrapper
   },
