@@ -71,22 +71,22 @@ Module.register("MMM-SwitchBot",
   getDom()
   {
     let icon = "fa-battery-half"; // Default
-    if (this.battery > 80) icon = "fa-battery-full";
-    else if (this.battery > 60) icon = "fa-battery-three-quarters";
-    else if (this.battery > 40) icon = "fa-battery-half";
-    else if (this.battery > 20) icon = "fa-battery-quarter";
+    if (replace(this.battery,' %','') > 80) icon = "fa-battery-full";
+    else if (replace(this.battery,' %','') > 60) icon = "fa-battery-three-quarters";
+    else if (replace(this.battery,' %','') > 40) icon = "fa-battery-half";
+    else if (replace(this.battery,' %','') > 20) icon = "fa-battery-quarter";
     else icon = "fa-battery-empty";
 
     const wrapper = document.createElement("div")
     if (!this.status || this.status === "waiting for data")
     {
-      wrapper.innerHTML = `<b>SwitchBot Data - ${this.displayName}</b><br />Warte auf Daten...`
+      wrapper.innerHTML = `<b>SwitchBot (${this.displayName})</b> - Warte auf Daten...`
     }
     else if (this.status === "success")
     {
-      wrapper.innerHTML = `<b>SwitchBot - ${this.displayName}</b> - 
-      ${this.temperature} &#8451; - 
-      <i class="fas fa-tint"></i> ${this.humidity}% -
+      wrapper.innerHTML = `<b>SwitchBot (${this.displayName})</b> - 
+      ${this.temperature} - 
+      <i class="fas fa-tint"></i> ${this.humidity} -
       <i class="fas ${icon}"></i> ${this.battery}%`
     } 
     else
