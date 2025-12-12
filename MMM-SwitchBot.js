@@ -86,7 +86,7 @@ Module.register("MMM-SwitchBot",
     } 
     else
     {
-      wrapper.innerHTML = `<b>SwitchBot Data - $${this.displayName}</b><br />Fehler beim abrufen der Daten...`
+      wrapper.innerHTML = `<b>SwitchBot Data - $${this.displayName}</b><br />Fehler beim abrufen der Daten: ${this.status}`
     }
     return wrapper
   },
