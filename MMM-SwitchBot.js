@@ -77,12 +77,10 @@ Module.register("MMM-SwitchBot",
     }
     else if (this.status === "success")
     {
-      wrapper.innerHTML = `<b>SwitchBot Data - $${this.displayName}</b><br />
+      wrapper.innerHTML = `<b>SwitchBot Data - ${this.displayName}</b><br />
       Temperature: ${this.temperature}<br />
       Humidity: ${this.humidity}<br />
-      Battery: ${this.battery}<br />
-      Device Type: ${this.deviceType}<br />
-      Status: ${this.status}`
+      Battery: ${this.battery}<br />`
     } 
     else
     {
