@@ -1,11 +1,11 @@
-# MMM-SwitchBot
-Use this template for creating new MagicMirror² modules.
 
-See the [wiki page](https://github.com/Dennis-Rosenbaum/MMM-Template/wiki) for an in depth overview of how to get started.
 
 # MMM-SwitchBot
 
-*MMM-SwitchBot* is a module for [MagicMirror²](https://github.com/MagicMirrorOrg/MagicMirror) that displays ... [Module description]
+*MMM-SwitchBot* is a module for [MagicMirror²](https://github.com/MagicMirrorOrg/MagicMirror) that displays that displays data of your SwitchBot sensors exposed by the Switchbot API.
+
+For more information on the API [API](htttps://github.com/OpenWonderLabs/SwitchBotAPI).
+
 
 ## Screenshot
 
@@ -69,7 +69,7 @@ Configuration with all options:
 	},
 ```
 
-### Configuration options
+<!--### Configuration options
 
 Option|Possible values|Default|Description
 ------|------|------|-----------
@@ -86,7 +86,7 @@ Notification|Description
 - `npm install` - Install devDependencies like ESLint.
 - `node --run lint` - Run linting and formatter checks.
 - `node --run lint:fix` - Fix linting and formatter issues.
-
+-->
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE.md) file for details.
