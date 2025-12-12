@@ -85,9 +85,9 @@ Module.register("MMM-SwitchBot",
     else if (this.status === "success")
     {
       wrapper.classList.add("mediumText");
-      wrapper.innerHTML = `<b>SwitchBot (${this.displayName}) - 
+      wrapper.innerHTML = `<b>SwitchBot (${this.displayName}) &nbsp; 
       ${this.temperature}°C &nbsp; 
-      <i class="fas fa-tint"></i> ${this.humidity}% -
+      <i class="fas fa-tint"></i> ${this.humidity}% &nbsp;
       <i class="fas ${icon}"></i> ${this.battery}%
       </b>`
     } 
