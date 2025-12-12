@@ -10,7 +10,9 @@ Module.register("MMM-SwitchBot",
     humidity: null,
     battery: null,
     deviceType: null,
-    status: "waiting for data"
+    status: "waiting for data",
+    mac: null,
+    displayName: "notDefined"
   },
 
   /**
@@ -29,12 +31,14 @@ Module.register("MMM-SwitchBot",
     this.token = this.config.token
     this.secret = this.config.secret
     this.updateInterval = this.config.updateInterval
-    this.addSign()
+    this.mac = this.config.mac
+    this.displayName = this.config.displayName
+    this.getSwitchBotData()
 
     console.log("Update-Intervall (ms):", this.updateInterval)
 
     // set timeout for next random text
-    setInterval(() => this.addSign(), this.updateInterval)
+    setInterval(() => this.getSwitchBotData(), this.updateInterval)
   },
 
   /**
@@ -46,14 +50,17 @@ Module.register("MMM-SwitchBot",
    */
   socketNotificationReceived: function (notification, data)
   {
-    if (notification === "SIGN")
+    if (notification === "SWITCHBOT_DATA")
       {
         this.temperature = `${data.temperature} °C`
         this.humidity = `${data.humidity} %`
         this.battery = `${data.battery} %`
         this.deviceType = `${data.deviceType}`
         this.status = `${data.status}`
-        console.log("Daten aktualisiert:", this.temperature, this.humidity, this.battery, this.deviceType)
+        if(this.status === "success")
+          console.log("Daten aktualisiert:", this.temperature, this.humidity, this.battery, this.deviceType)
+        else
+          console.log("Fehler beim Abrufen der Daten!")
         this.updateDom()
       }
   },
@@ -64,14 +71,14 @@ Module.register("MMM-SwitchBot",
   getDom()
   {
     const wrapper = document.createElement("div")
-    wrapper.innerHTML = `<b>SwitchBot Data</b><br />Temperature: ${this.temperature}<br />Humidity: ${this.humidity}<br />Battery: ${this.battery}<br />Device Type: ${this.deviceType}<br />Status: ${this.status}`
+    wrapper.innerHTML = `<b>SwitchBot Data - $${this.displayName}</b><br />Temperature: ${this.temperature}<br />Humidity: ${this.humidity}<br />Battery: ${this.battery}<br />Device Type: ${this.deviceType}`
 
     return wrapper
   },
 
-  addSign()
+  getSwitchBotData()
   {
-    this.sendSocketNotification("GET_SIGN", { token: this.token, secret: this.secret })
+    this.sendSocketNotification("GET_SWITCHBOT_DATA", { token: this.token, secret: this.secret, deviceId: this.mac, displayName: this.displayName })
   },
 
   /**
@@ -82,8 +89,14 @@ Module.register("MMM-SwitchBot",
    */
   notificationReceived(notification, data)
   {
-    if (notification === "SIGN") {
-      this.sign = `${data.text}`
+    if (notification === "SWITCHBOT_DATA") {
+      console.log("Notification from other module reveived:", this.temperature, this.humidity, this.battery, this.deviceType)
+      this.temperature = `${data.temperature} °C`
+      this.humidity = `${data.humidity} %`
+      this.battery = `${data.battery} %`
+      this.deviceType = `${data.deviceType}`
+      this.status = `${data.status}`
+      console.log("Daten aktualisiert:", this.temperature, this.humidity, this.battery, this.deviceType)
       this.updateDom()
     }
   }

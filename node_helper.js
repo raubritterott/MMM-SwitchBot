@@ -7,12 +7,12 @@ module.exports = NodeHelper.create(
 
   async socketNotificationReceived(notification, payload)
   {
-    if (notification === "GET_SIGN")
+    if (notification === "GET_SWITCHBOT_DATA")
     {
-      const { token, secret } = payload; // Extrahiere token und secret aus dem Payload-Objekt
-      console.log("GET_SIGN wurde aufgerufen");
-      console.log("Token:", token);
-      console.log("Secret:", secret);
+      const { token, secret, deviceId } = payload; // Extrahiere token und secret aus dem Payload-Objekt
+      console.log("GET_SWITCHBOT_DATA wurde aufgerufen");
+      //console.log("Token:", token);
+      //console.log("Secret:", secret);
       const t = Date.now();
       const nonce = "MagicMirrorAO";
       const data = token + t + nonce;
@@ -20,7 +20,6 @@ module.exports = NodeHelper.create(
         .createHmac('sha256', secret)
         .update(data)
         .digest('base64');
-      const deviceId = "B0E9FE577821";
       const options = {
           hostname: 'api.switch-bot.com',
           port: 443,
@@ -59,13 +58,13 @@ module.exports = NodeHelper.create(
             console.log("Komplette Antwort:", json);
 
             // Jetzt kannst du version senden!
-            this.sendSocketNotification("SIGN", { version: version, temperature: temperature, humidity: humidity, battery: battery, deviceType: deviceType, status: "success" });
+            this.sendSocketNotification("SWITCHBOT_DATA", { version: version, temperature: temperature, humidity: humidity, battery: battery, deviceType: deviceType, status: "success" });
 
           }
           catch (err)
           {
             console.error("Fehler beim JSON-Parsen:", err);
-            this.sendSocketNotification("SIGN", { status: "Parse error" });
+            this.sendSocketNotification("SWITCHBOT_DATA", { status: "Parse error" });
           }
         });
       });
@@ -73,7 +72,7 @@ module.exports = NodeHelper.create(
       req.on("error", (error) =>
       {
         console.error("HTTPS error:", error);
-        this.sendSocketNotification("SIGN", { status: "HTTPS error" });
+        this.sendSocketNotification("SWITCHBOT_DATA", { status: "HTTPS error" });
       });
 
       req.end();
