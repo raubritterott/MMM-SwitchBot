@@ -1,7 +1,7 @@
 {
   "name": "MMM-SwitchBot",
   "version": "1.0.0",
-  "description": "[Module description]",
+  "description": "MMM-SwitchBot is a module for MagicMirror² that displays that displays data of your SwitchBot sensors exposed by the Switchbot API.",
   "main": "MMM-SwitchBot.js",
   "scripts": {
     "lint": "eslint",
