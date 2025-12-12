@@ -49,16 +49,16 @@ module.exports = NodeHelper.create(
           try
           {
             const json = JSON.parse(rawData);
-            const version = json.body?.version || "No version";
-            const temperature = json.body?.temperature || "No temperature";
-            const humidity = json.body?.humidity || "No humidity";
-            const battery = json.body?.battery || "No battery info";
-            const deviceType = json.body?.deviceType || "No device type";
+            const version = json.body?.version || "";
+            const temperature = json.body?.temperature || "";
+            const humidity = json.body?.humidity || "";
+            const battery = json.body?.battery || "";
+            const deviceType = json.body?.deviceType || "";
+            const status = json.message || "Error parsing message";
 
-            console.log("Komplette Antwort:", json);
+            console.log("Response:", json);
 
-            // Jetzt kannst du version senden!
-            this.sendSocketNotification("SWITCHBOT_DATA", { version: version, temperature: temperature, humidity: humidity, battery: battery, deviceType: deviceType, status: "success" });
+            this.sendSocketNotification("SWITCHBOT_DATA", { version: version, temperature: temperature, humidity: humidity, battery: battery, deviceType: deviceType, status: status });
 
           }
           catch (err)

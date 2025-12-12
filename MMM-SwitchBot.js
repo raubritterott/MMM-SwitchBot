@@ -71,7 +71,26 @@ Module.register("MMM-SwitchBot",
   getDom()
   {
     const wrapper = document.createElement("div")
-    wrapper.innerHTML = `<b>SwitchBot Data - $${this.displayName}</b><br />Temperature: ${this.temperature}<br />Humidity: ${this.humidity}<br />Battery: ${this.battery}<br />Device Type: ${this.deviceType}`
+    if (!this.status || this.status === "waiting for data")
+    {
+      wrapper.innerHTML = `<b>SwitchBot Data - $${this.displayName}</b><br />Warte auf Daten...`
+      return wrapper
+    }
+    else if (this.status === "success")
+    {
+      wrapper.innerHTML = `<b>SwitchBot Data - $${this.displayName}</b><br />
+      Temperature: ${this.temperature}<br />
+      Humidity: ${this.humidity}<br />
+      Battery: ${this.battery}<br />
+      Device Type: ${this.deviceType}<br />
+      Status: ${this.status}`
+    } 
+    else
+    {
+      wrapper.innerHTML = `<b>SwitchBot Data - $${this.displayName}</b><br />Fehler beim abrufen der Daten...`
+      return wrapper
+    }
+    
 
     return wrapper
   },
