@@ -1,11 +1,19 @@
 
 .MMM-SwitchBot div b {
+  font-weight: 600; 
   color: darkgrey;
 }
 
-.MMM-SwitchBot div {
-  color: white;
+.smallText {
+    font-size: 12px;
 }
 
+.mediumText {
+    font-size: 24px;
+}
+
+.largeText {
+    font-size: 36px;
+}
 
 
