@@ -52,9 +52,9 @@ Module.register("MMM-SwitchBot",
   {
     if (notification === "SWITCHBOT_DATA")
       {
-        this.temperature = `${data.temperature} °C`
-        this.humidity = `${data.humidity} %`
-        this.battery = `${data.battery} %`
+        this.temperature = `${data.temperature}`
+        this.humidity = `${data.humidity}`
+        this.battery = `${data.battery}`
         this.deviceType = `${data.deviceType}`
         this.status = `${data.status}`
         if(this.status === "success")
@@ -70,12 +70,11 @@ Module.register("MMM-SwitchBot",
    */
   getDom()
   {
-    let batteryValue = parseInt(String(this.battery).replace(" %", ""), 10);
     let icon = "fa-battery-half"; // Default
-    if (replace(batteryValue,' %','') > 80) icon = "fa-battery-full";
-    else if (replace(batteryValue,' %','') > 60) icon = "fa-battery-three-quarters";
-    else if (replace(batteryValue,' %','') > 40) icon = "fa-battery-half";
-    else if (replace(batteryValue,' %','') > 20) icon = "fa-battery-quarter";
+    if (this.battery > 80) icon = "fa-battery-full";
+    else if (this.battery > 60) icon = "fa-battery-three-quarters";
+    else if (this.battery > 40) icon = "fa-battery-half";
+    else if (this.battery > 20) icon = "fa-battery-quarter";
     else icon = "fa-battery-empty";
 
     const wrapper = document.createElement("div")
@@ -86,8 +85,8 @@ Module.register("MMM-SwitchBot",
     else if (this.status === "success")
     {
       wrapper.innerHTML = `<b>SwitchBot (${this.displayName})</b> - 
-      ${this.temperature} - 
-      <i class="fas fa-tint"></i> ${this.humidity} -
+      ${this.temperature} &#8451; - 
+      <i class="fas fa-tint"></i> ${this.humidity}% -
       <i class="fas ${icon}"></i> ${this.battery}%`
     } 
     else
