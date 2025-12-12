@@ -11,7 +11,7 @@ Module.register("MMM-SwitchBot",
     battery: null,
     deviceType: null,
     status: "waiting for data",
-    mac: null,
+    deviceId: null,
     displayName: "notDefined"
   },
 
@@ -31,7 +31,7 @@ Module.register("MMM-SwitchBot",
     this.token = this.config.token
     this.secret = this.config.secret
     this.updateInterval = this.config.updateInterval
-    this.mac = this.config.mac
+    this.deviceId = this.config.deviceId
     this.displayName = this.config.displayName
     this.getSwitchBotData()
 
@@ -78,7 +78,7 @@ Module.register("MMM-SwitchBot",
 
   getSwitchBotData()
   {
-    this.sendSocketNotification("GET_SWITCHBOT_DATA", { token: this.token, secret: this.secret, deviceId: this.mac, displayName: this.displayName })
+    this.sendSocketNotification("GET_SWITCHBOT_DATA", { token: this.token, secret: this.secret, deviceId: this.deviceId, displayName: this.displayName })
   },
 
   /**
