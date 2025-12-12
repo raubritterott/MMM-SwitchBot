@@ -1,15 +1,15 @@
-# MMM-Template
-Use this template for creating new MagicMirror² modules.
 
-See the [wiki page](https://github.com/Dennis-Rosenbaum/MMM-Template/wiki) for an in depth overview of how to get started.
 
-# MMM-Template
+# MMM-SwitchBot
 
-*MMM-Template* is a module for [MagicMirror²](https://github.com/MagicMirrorOrg/MagicMirror) that displays ... [Module description]
+*MMM-SwitchBot* is a module for [MagicMirror²](https://github.com/MagicMirrorOrg/MagicMirror) that displays that displays data of your SwitchBot sensors exposed by the Switchbot API.
+
+For more information on the API [API](htttps://github.com/OpenWonderLabs/SwitchBotAPI).
+
 
 ## Screenshot
 
-![Example of MMM-Template](./example_1.png)
+![Example of MMM-SwitchBot](./example_1.png)
 
 ## Installation
 
@@ -19,7 +19,7 @@ In your terminal, go to the modules directory and clone the repository:
 
 ```bash
 cd ~/MagicMirror/modules
-git clone [GitHub url]
+git clone https://github.com/raubritterott/MMM-SwitchBot
 ```
 
 ### Update
@@ -27,7 +27,7 @@ git clone [GitHub url]
 Go to the module directory and pull the latest changes:
 
 ```bash
-cd ~/MagicMirror/modules/MMM-Template
+cd ~/MagicMirror/modules/MMM-SwitchBot
 git pull
 ```
 
@@ -41,24 +41,35 @@ Minimal configuration to use the module:
 
 ```js
     {
-        module: 'MMM-Template',
-        position: 'lower_third'
-    },
+        module: 'MMM-SwitchBot',
+        position: "top_right",
+        config: {
+            token: 'yourToken',     // SwitchBot app developer settings
+            secret: 'yourSecret',   // SwitchBot app developer settings
+            updateInterval: 60000,
+            deviceId: 'deviceId',   // mac of your SwitchBot device 
+            displayName: 'NameDisplayedOnTheMirror'
+        }
+	},
 ```
 
 Configuration with all options:
 
 ```js
     {
-        module: 'MMM-Template',
-        position: 'lower_third',
+        module: 'MMM-SwitchBot',
+        position: "top_right",
         config: {
-            exampleContent: 'Welcome world'
+            token: 'yourToken',     // SwitchBot app developer settings
+            secret: 'yourSecret',   // SwitchBot app developer settings
+            updateInterval: 60000,
+            deviceId: 'deviceId',   // mac of your SwitchBot device 
+            displayName: 'NameDisplayedOnTheMirror'
         }
-    },
+	},
 ```
 
-### Configuration options
+<!--### Configuration options
 
 Option|Possible values|Default|Description
 ------|------|------|-----------
@@ -75,7 +86,7 @@ Notification|Description
 - `npm install` - Install devDependencies like ESLint.
 - `node --run lint` - Run linting and formatter checks.
 - `node --run lint:fix` - Fix linting and formatter issues.
-
+-->
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE.md) file for details.
