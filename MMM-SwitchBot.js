@@ -86,7 +86,7 @@ Module.register("MMM-SwitchBot",
     {
       wrapper.classList.add("mediumText");
       wrapper.innerHTML = `<b>SwitchBot (${this.displayName}) - 
-      ${this.temperature} &#8451; &nbsp; 
+      ${this.temperature}°C &nbsp; 
       <i class="fas fa-tint"></i> ${this.humidity}% -
       <i class="fas ${icon}"></i> ${this.battery}%
       </b>`
