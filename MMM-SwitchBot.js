@@ -73,8 +73,7 @@ Module.register("MMM-SwitchBot",
     const wrapper = document.createElement("div")
     if (!this.status || this.status === "waiting for data")
     {
-      wrapper.innerHTML = `<b>SwitchBot Data - $${this.displayName}</b><br />Warte auf Daten...`
-      return wrapper
+      wrapper.innerHTML = `<b>SwitchBot Data - ${this.displayName}</b><br />Warte auf Daten...`
     }
     else if (this.status === "success")
     {
@@ -88,10 +87,7 @@ Module.register("MMM-SwitchBot",
     else
     {
       wrapper.innerHTML = `<b>SwitchBot Data - $${this.displayName}</b><br />Fehler beim abrufen der Daten...`
-      return wrapper
     }
-    
-
     return wrapper
   },
 
