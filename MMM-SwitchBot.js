@@ -84,7 +84,7 @@ Module.register("MMM-SwitchBot",
     }
     else if (this.status === "success")
     {
-      wrapper.classList.add("smallText");
+      wrapper.classList.add("mediumText");
       wrapper.innerHTML = `<b>SwitchBot (${this.displayName}) - 
       ${this.temperature} &#8451; &nbsp; 
       <i class="fas fa-tint"></i> ${this.humidity}% -
