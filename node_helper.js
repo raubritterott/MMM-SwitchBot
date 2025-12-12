@@ -23,7 +23,7 @@ module.exports = NodeHelper.create(
       const options = {
           hostname: 'api.switch-bot.com',
           port: 443,
-          path: `/v1.1/devices/${deviceId}/status`, ///${deviceId}/commands`,
+          path: `/v1.1/devices/${deviceId}/statusx`, ///${deviceId}/commands`,
           method: 'GET',
           headers: {
               "Authorization": token,
