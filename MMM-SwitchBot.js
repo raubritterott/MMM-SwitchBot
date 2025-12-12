@@ -70,11 +70,12 @@ Module.register("MMM-SwitchBot",
    */
   getDom()
   {
+    let batteryValue = parseInt(String(this.battery).replace(" %", ""), 10);
     let icon = "fa-battery-half"; // Default
-    if (replace(this.battery,' %','') > 80) icon = "fa-battery-full";
-    else if (replace(this.battery,' %','') > 60) icon = "fa-battery-three-quarters";
-    else if (replace(this.battery,' %','') > 40) icon = "fa-battery-half";
-    else if (replace(this.battery,' %','') > 20) icon = "fa-battery-quarter";
+    if (replace(batteryValue,' %','') > 80) icon = "fa-battery-full";
+    else if (replace(batteryValue,' %','') > 60) icon = "fa-battery-three-quarters";
+    else if (replace(batteryValue,' %','') > 40) icon = "fa-battery-half";
+    else if (replace(batteryValue,' %','') > 20) icon = "fa-battery-quarter";
     else icon = "fa-battery-empty";
 
     const wrapper = document.createElement("div")
