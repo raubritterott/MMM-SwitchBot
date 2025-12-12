@@ -1,7 +1,7 @@
 # MMM-SwitchBot
 Use this template for creating new MagicMirror² modules.
 
-See the [wiki page](https://github.com/Dennis-Rosenbaum/MMM-SwitchBot/wiki) for an in depth overview of how to get started.
+See the [wiki page](https://github.com/Dennis-Rosenbaum/MMM-Template/wiki) for an in depth overview of how to get started.
 
 # MMM-SwitchBot
 
@@ -42,8 +42,15 @@ Minimal configuration to use the module:
 ```js
     {
         module: 'MMM-SwitchBot',
-        position: 'lower_third'
-    },
+        position: "top_right",
+        config: {
+            token: 'yourToken',     // SwitchBot app developer settings
+            secret: 'yourSecret',   // SwitchBot app developer settings
+            updateInterval: 60000,
+            deviceId: 'deviceId',   // mac of your SwitchBot device 
+            displayName: 'NameDisplayedOnTheMirror'
+        }
+	},
 ```
 
 Configuration with all options:
@@ -51,11 +58,15 @@ Configuration with all options:
 ```js
     {
         module: 'MMM-SwitchBot',
-        position: 'lower_third',
+        position: "top_right",
         config: {
-            exampleContent: 'Welcome world'
+            token: 'yourToken',     // SwitchBot app developer settings
+            secret: 'yourSecret',   // SwitchBot app developer settings
+            updateInterval: 60000,
+            deviceId: 'deviceId',   // mac of your SwitchBot device 
+            displayName: 'NameDisplayedOnTheMirror'
         }
-    },
+	},
 ```
 
 ### Configuration options
