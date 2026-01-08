@@ -50,9 +50,9 @@ module.exports = NodeHelper.create(
           {
             const json = JSON.parse(rawData);
             const version = json.body?.version || "";
-            const temperature = json.body?.temperature || "";
-            const humidity = json.body?.humidity || "";
-            const battery = json.body?.battery || "";
+            const temperature = json.body?.temperature === 0 ? "0.0" : json.body?.temperature ?? "";
+            const humidity = json.body?.humidity === 0 ? "0" : json.body?.humidity ?? "";
+            const battery = json.body?.battery === 0 ? "0" : json.body?.battery ?? "";
             const deviceType = json.body?.deviceType || "";
             const status = json.message || "Error parsing message";
 
