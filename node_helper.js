@@ -56,7 +56,7 @@ module.exports = NodeHelper.create(
             const deviceType = json.body?.deviceType || "";
             const status = json.message || "Error parsing message";
 
-            console.log("Response:", json);
+            //console.log("Response:", json);
 
             this.sendSocketNotification("SWITCHBOT_DATA", { version: version, temperature: temperature, humidity: humidity, battery: battery, deviceType: deviceType, status: status });
 
